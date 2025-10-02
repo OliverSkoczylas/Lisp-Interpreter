@@ -1,0 +1,232 @@
+PS C:\Users\Olive\Downloads\Final_Submission_File> C:\MinGW\bin\gcc.exe -o test_lisp.exe lisp_interpreter.c test_suite.c -lm
+PS C:\Users\Olive\Downloads\Final_Submission_File> .\test_lisp.exe
+==================================================
+     COMPLETE LISP INTERPRETER TEST SUITE
+==================================================
+
+========== SPRINT 1 TESTS (Data Structures) ==========
+
+Test: isNil(nil())
+Expected: true
+Output: true
+
+Test: isNumber(atom("42.5"))
+Expected: true
+Output: true
+
+Test: isSymbol(atom("hello-world"))
+Expected: true
+Output: true
+
+Test: isList(cons(atom("foo"), nil()))
+Expected: true
+Output: true
+
+Test: isTrueSexp(nil())
+Expected: false
+Output: false
+
+Test: isTrueSexp(atom("789"))
+Expected: true
+Output: true
+
+Test: cons('x', '(y z w)) => (x y z w)
+Output: (x y z w)
+
+========== SPRINT 2 TESTS (Predicates & Accessors) ==========
+
+Test: car(list(atom("first"), atom("second"), atom("third")))
+Expected: first
+Output: first
+
+Test: cdr(list(atom("one"), atom("two"), atom("three")))
+Expected: (two three)
+Output: (two three)
+
+Test: eq(atom("99"), atom("99"))
+Expected: true
+Output: true
+
+Test: eq(atom("foo"), atom("bar"))
+Expected: false
+Output: false
+
+Test: null(nil())
+Expected: true
+Output: true
+
+Test: null(cons(atom("element"), nil()))
+Expected: false
+Output: false
+
+========== SPRINT 3 TESTS (Arithmetic & Comparison) ==========
+
+Test: add(atom("17"), atom("25"))
+Expected: 42
+Output: 42
+
+Test: sub(atom("100"), atom("37"))
+Expected: 63
+Output: 63
+
+Test: mul(atom("7"), atom("8"))
+Expected: 56
+Output: 56
+
+Test: divide(atom("144"), atom("12"))
+Expected: 12
+Output: 12
+
+Test: gt(atom("42"), atom("17"))
+Expected: T
+Output: T
+
+Test: lt(atom("15"), atom("30"))
+Expected: T
+Output: T
+
+========== SPRINT 5 TESTS (Eval Function) ==========
+
+Test: eval(nil)
+Expected: ()
+Output: ()
+
+Test: eval(42)
+Expected: 42
+Output: 42
+
+Test: (quote (a b c))
+Expected: (a b c)
+Output: (a b c)
+
+Test: (+ 3 4)
+Expected: 7
+Output: 7
+
+Test: (+ (* 2 3) (- 10 6))
+Expected: 10
+Output: 10
+
+Test: (set x 123) then lookup x
+Expected: 123
+Output: 123
+
+Test: (< 5 10)
+Expected: T
+Output: T
+
+Test: (eq 7 7)
+Expected: T
+Output: T
+
+========== SPRINT 6 TESTS (Conditionals) ==========
+
+Test: (if (> 5 3) 100 200)
+Expected: 100
+Output: 100
+
+Test: (if (< 5 3) yes no)
+Expected: no
+Output: UNDEFINED
+
+Test: (and (> 5 3) (< 2 4))
+Expected: T
+Output: T
+
+Test: (and (< 5 3) (/ 1 0)) - should not divide by zero
+Expected: ()
+Output: ()
+
+Test: (or (> 5 3) (/ 1 0)) - should not divide by zero
+Expected: T
+Output: T
+
+Test: (cond ((< 5 3) first) ((> 5 3) second) (T third))
+Expected: second
+Output: UNDEFINED
+
+========== SPRINT 7 TESTS (User-Defined Functions) ==========
+
+Test: (define square (x) (* x x))
+Function defined
+
+Test: (square 7)
+Expected: 49
+Output: 49
+
+Test: (define add3 (a b c) (+ (+ a b) c))
+Function defined
+
+Test: (add3 10 20 30)
+Expected: 60
+Output: 60
+
+Test: (define fact (n) (if (<= n 1) 1 (* n (fact (- n 1)))))
+Function defined
+
+Test: (fact 5)
+Expected: 120
+Output: 120
+
+========== SPRINT 8 TESTS (Lambda Functions) ==========
+
+Test: ((lambda (x) (+ x 10)) 5)
+Expected: 15
+Output: 15
+
+Test: ((lambda (x y) (* x y)) 6 7)
+Expected: 42
+Output: 42
+
+Test: (set cube (lambda (x) (* x (* x x))))
+Lambda assigned to cube
+
+Test: (cube 3)
+Expected: 27
+Output: 27
+
+Test: (set make-adder (lambda (n) (lambda (x) (+ x n))))
+Higher-order function defined
+
+Test: (set add5 (make-adder 5))
+add5 created
+
+Test: (add5 12)
+Expected: 17
+Output: 17
+
+========== INTEGRATION TESTS ==========
+
+Test: Complex expression with multiple features
+Expression: (if (and (> 10 5) (< 3 7)) (* 2 (+ 3 4)) (- 100 50))
+Expected: 14
+Output: 14
+
+Test: Function composition
+Define double: (define double (x) (* 2 x))
+Define add1: (define add1 (x) (+ x 1))
+Test: (double (add1 4))
+Expected: 10
+Output: 10
+
+========== PARSER TESTS ==========
+
+Test: Parse and eval "(+ 2 3)"
+Expected: 5
+Output: 5
+
+Test: Parse and eval "(* (+ 1 2) (- 5 2))"
+Expected: 9
+Output: 9
+
+Test: Parse quoted list "'(a b c)"
+Expected: (a b c)
+Output: (a b c)
+
+Test: Parse and eval lambda "((lambda (x y) (+ x y)) 10 20)"
+Expected: 30
+Output: 30
+
+==================================================
+           ALL TESTS COMPLETED
+==================================================
